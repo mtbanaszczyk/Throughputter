@@ -26,7 +26,7 @@ m.banaszczyk
 
 ## Version History
 
-* 0.1
+* 1.0
     * Initial Release
 
 ## License
