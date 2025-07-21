@@ -29,6 +29,9 @@ class IperfCommand:
         self.iperf_command_format[BASE_SHELL] = BASE_SHELL
         self.iperf_command_format[BASE_PATH] = BASE_PATH
 
+    def iperf_command_format_clear(self) ->None:
+        self.iperf_command_format.clear()
+
     def get_iperf_command(self) -> str:
         iperf_command_string = str()
         dut_selected = str()
@@ -212,7 +215,7 @@ class View:
 
     def refresh_iperf_command_textbox(self) -> None:
         self.iperf_textbox.delete(1.0, tk.END)
-        self.iperf_command.iperf_command_format.clear()
+        self.iperf_command.iperf_command_format_clear()
         self.iperf_command.add_base_parameters()
         self.iperf_textbox.insert(tk.INSERT, self.iperf_command.get_iperf_command()[0])
 
