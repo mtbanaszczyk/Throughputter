@@ -17,13 +17,12 @@ class DUTConnect:
     def start_adb_server() -> None:
         subprocess.run(['adb', 'start-server'], shell=True)
 
-    def connect(self) -> None:
+    def connect(self) -> Optional[list]:
         self.start_adb_server()
         try:
             self.adb_client.create_connection()
         except ConnectionError:
             return None
-
         self.devices_connected = self.adb_client.devices()
         if not self.devices_connected:
             return None

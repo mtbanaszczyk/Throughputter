@@ -1,4 +1,3 @@
-import tkinter
 import tkinter as tk
 import pyperclip
 from collections import OrderedDict
@@ -122,7 +121,8 @@ class IperfCommand:
 
 
 class View:
-    def __init__(self, master: tkinter.Tk, dut_connect: dut.DUTConnect, logging_mode, iperf_command=IperfCommand):
+    def __init__(self, master: tk.Tk, dut_connect: dut.DUTConnect, logging_mode: IntVar,
+                 iperf_command: IperfCommand):
         self.iperf_command = iperf_command
         self.dut_connect = dut_connect
         self.logging_mode = logging_mode
@@ -375,7 +375,7 @@ class Controller:
     def copy_iperf_command(self, event: tk.Event) -> None:
         pyperclip.copy(self.view.iperf_textbox.get(0.0, tk.END))
 
-    def clear_and_refresh(self, event: tk.Event) -> None:
+    def clear_and_refresh(self, event: Optional[tk.Event]) -> None:
         self.get_dut_serial_numbers_avi(event=None)
         self.view.widgets_clear_and_refresh()
         self.view.refresh_iperf_command_textbox()
@@ -389,7 +389,7 @@ class Controller:
     @staticmethod
     def popup_about_window(event: tk.Event) -> None:
         showinfo('About',
-                 'Throughputter v.1.0\nA graphical UI to iperf, designed to run throughput tests over adb protocol\nBy: m.banaszczyk')
+                 'Throughputter v.1.0\nA graphical UI to iperf, designed to run throughput tests over adb protocol\nBy: mtbanaszczyk')
 
     def run(self) -> None:
         self.root.title('Throughputter')
